@@ -1,0 +1,25 @@
+/**
+ * En este archivo generado por prisma se encuentra la estructura de la DB, ademas se especifica que tipo de SGBD es.
+ * Por otro lado se crean las tablas y se mapean a la base de datos con nombres convencionales en la DB.
+ */
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  passwordHash String   @map("password_hash")
+  firstName    String   @map("first_name")
+  lastName     String   @map("last_name")
+  avatarUrl    String?  @map("avatar_url")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("users")
+}

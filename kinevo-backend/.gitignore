@@ -1,0 +1,8 @@
+# Modulos
+node_modules
+
+# Variables de entorno
+.env
+
+# Esquema de prisma
+/generated/prisma
