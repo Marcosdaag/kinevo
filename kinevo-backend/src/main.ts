@@ -8,12 +8,11 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
 
+  // Configuracion del modulo Swagger
   const config = new DocumentBuilder()
     .setTitle('Kinevo API')
     .addBearerAuth()
     .build();
-
-  // Configuracion del modulo Swagger
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api/docs', app, document);
 
