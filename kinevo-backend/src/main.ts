@@ -6,9 +6,14 @@ import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // Habilitar CORS para que Angular (localhost:4200) pueda conectarse
+  // Habilitar CORS (Cross-Origin Resource Sharing).
+  // Es una medida de seguridad de los navegadores. Al habilitarlo, permitimos que
+  // nuestro Frontend (Angular) en el puerto 4200 pueda hacer peticiones a este Backend en el puerto 3000.
   app.enableCors();
 
+  // El ValidationPipe es el "patovica" de nuestros endpoints.
+  // Lee las reglas de los DTOs (ej: @IsEmail(), @IsString()) y si el Frontend envía datos basura,
+  // los rebota automáticamente devolviendo un error 400 Bad Request, sin que el código de nuestro controlador se llegue a ejecutar.
   app.useGlobalPipes(new ValidationPipe());
 
   // Configuracion del modulo Swagger
